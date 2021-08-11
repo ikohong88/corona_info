@@ -1,0 +1,66 @@
+package com.corona.service;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import com.corona.mapper.CoronaRegionInfoMapper;
+import com.corona.utils.DateUtils;
+import com.corona.vo.CoronaRegionVO;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CoronaRegionInfoService {
+    @Autowired CoronaRegionInfoMapper mapper;
+    public void insertCoronaRegionInfo(CoronaRegionVO vo) {
+        mapper.insertCoronaRegionInfo(vo);
+    }
+    public List<CoronaRegionVO> selectTodayCoronaRegionInfo() {
+        Calendar start = Calendar.getInstance();
+        // Calendar end = Calendar.getInstance();
+        
+        // start.set(Calendar.HOUR_OF_DAY, 10);
+        // start.set(Calendar.MINUTE, 29);
+        // start.set(Calendar.SECOND, 10);
+        String _hour_min = DateUtils.leadingZero(start.get(Calendar.HOUR_OF_DAY))+DateUtils.leadingZero(start.get(Calendar.MINUTE));      
+        
+        String today = null;
+        if(Integer.parseInt(_hour_min) >= 1031 ) {
+            today = start.get(Calendar.YEAR)+"-"+DateUtils.leadingZero(start.get(Calendar.MONTH)+1)+"-"+DateUtils.leadingZero(start.get(Calendar.DATE));
+        } else {
+            start.add(Calendar.DATE, -1);
+            today = start.get(Calendar.YEAR)+"-"+DateUtils.leadingZero(start.get(Calendar.MONTH)+1)+"-"+DateUtils.leadingZero(start.get(Calendar.DATE));
+        }
+        System.out.println(Integer.parseInt(_hour_min));
+        System.out.println(today);
+
+        // Date now = new Date();
+        // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        // String date = formatter.format(now);
+       
+        List<CoronaRegionVO> data = mapper.selectCoronaRegionInfoByDate(today); 
+        
+        // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        for(CoronaRegionVO item : data) {
+            // String statusDt = formatter.format(item.getCreateDt());
+            // Date createDt = item.getCreateDt();             
+            // Integer deathCnt = item.getDeathCnt();
+            // Integer defCnt = item.getDefCnt();
+            // String gubun = item.getGubun();
+            // Integer incDec = item.getIncDec();
+            // Integer isolClearCnt = item.getIsolClearCnt();
+            // Integer isolIngCnt = item.getIsolIngCnt();
+            // Integer localOccCnt = item.getLocalOccCnt();
+            // Integer overFlowCnt = item.getOverFlowCnt(); 
+            // System.out.println(item.getCreateDt());   
+        }
+
+        return data;
+    }
+}

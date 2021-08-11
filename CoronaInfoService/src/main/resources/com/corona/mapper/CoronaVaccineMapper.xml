@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.corona.mapper.CoronaVaccineMapper">
+    <insert id="insertVaccineInfo">
+        INSERT INTO corona_info.corona_vaccine_info
+        (accumulatedFirstCnt, accumulatedSecondCnt, baseDate, firstCnt, secondCnt, sido, totalFirstCnt, totalSecondCnt)
+        VALUES(#{accumulatedFirstCnt}, #{accumulatedSecondCnt}, #{baseDate}, #{firstCnt}, #{secondCnt}, #{sido}, #{totalFirstCnt}, #{totalSecondCnt});
+    </insert>
+    <select id="selectVaccineInfoByDate" resultType="com.corona.vo.CoronaVaccineVO">
+        select * from corona_vaccine_info cvi where baseDate >= #{date} order by sido desc;
+    </select>
+</mapper>
