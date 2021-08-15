@@ -6,13 +6,15 @@
     <meta charset="UTF-8">
     <title>코로나 정보 대시보드</title>
     <link rel="stylesheet" href="/assets/css/reset.css">
-    <link rel="stylesheet" href="/assets/css/index.css">
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
+    
+    <link rel="stylesheet" href="/assets/css/index.css">
     <script src="/assets/js/index.js"></script>
 </head>
 <body>
     <div class="container">
+<<<<<<< Updated upstream
         <div class="left_menu">
             <a href="/" id="logo">CORONA INFO</a>
             <ul class="main_menu">
@@ -33,6 +35,9 @@
                 </li>
             </ul>
         </div>
+=======
+        <%@include file="/WEB-INF/views/includes/menu.jsp"%>        
+>>>>>>> Stashed changes
         <div class="dashboard_area">
             <div class="dashboard_content">
                 <div class="content_left">
